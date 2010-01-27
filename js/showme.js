@@ -53,7 +53,7 @@ var ShowMe = Class.create({
                         element.setStyle({ 'display': 'none' });
                         element.setOpacity(1);
                     }
-                }.bind(this), delay)
+                }.bind(this), delay * 1000)
             }.bind(this));            
         }.bind(this), this.options.initialDelay * 1000);
     }
