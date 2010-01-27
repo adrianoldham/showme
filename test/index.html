@@ -33,7 +33,7 @@
 <script type="text/javascript" charset="utf-8">
     function runTest() {
         var showMe1 = new ShowMe('.test1');
-        var showMe1 = new ShowMe('.test2', { sequential: true });
+        var showMe1 = new ShowMe('.test2', { sequential: true, effect: Effect.BlindDown });
     }
 
     document.observe("dom:loaded", runTest);

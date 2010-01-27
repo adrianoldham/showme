@@ -8,7 +8,10 @@ var ShowMe = Class.create({
 
         // elementDelay is only used if sequential is true (turned on)
         sequential: false,          // whether to show each element sequentially
-        sequentialDelay: 0.25       // delay between each element
+        sequentialDelay: 0.25,       // delay between each element
+        
+        // what effect is used to display the element
+        effect: Effect.Appear
     },
     
     initialize: function(selector, options) {
@@ -43,7 +46,14 @@ var ShowMe = Class.create({
                     delay = i++ * (this.options.animationDuration + this.options.sequentialDelay);                    
                 }
                 
-                new Effect.Appear(element, { duration: this.options.animationDuration, delay: delay });
+                setTimeout(function() {
+                    new this.options.effect(element, { duration: this.options.animationDuration });
+                    
+                    if (this.options.effect != Effect.Appear) {
+                        element.setStyle({ 'display': 'none' });
+                        element.setOpacity(1);
+                    }
+                }.bind(this), delay)
             }.bind(this));            
         }.bind(this), this.options.initialDelay * 1000);
     }
